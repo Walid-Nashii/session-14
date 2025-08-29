@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDo App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input,
+    textarea,
+    select {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .filters,
+    .sort {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .todo-item {
+      background: white;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .todo-item.complete {
+      background: #e6ffe6;
+      border-left: 4px solid #4CAF50;
+    }
+
+    .todo-item h3 {
+      margin: 0 0 5px 0;
+    }
+
+    .todo-item p {
+      margin: 5px 0;
+    }
+
+    .todo-item .due-date {
+      color: #666;
+      font-size: 0.9em;
+    }
+
+    .todo-item .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .todo-item .actions button {
+      padding: 5px 10px;
+      font-size: 0.8em;
+    }
+
+    /* Animation for Completion (Bonus #1) */
+    @keyframes confetti {
+      0% {
+        transform: translateY(0) rotate(0);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: gold;
+      animation: confetti 1s ease-out;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    
+
+    <h1>ToDo App</h1>
+
+    <!-- Form to Add/Edit Todos -->
+    <form id="todoForm">
+      <input type="text" id="title" placeholder="Title" required>
+      <input type="d" id="dueDate" required>
+      <select id="category" required>
+        <option value="">Select Category</option>
+        <option value="shopping">Shopping</option>
+        <option value="school">School</option>
+        <option value="work">Work</option>
+        <option value="house">House Work</option>
+      </select>
+      <textarea id="description" placeholder="Description"></textarea>
+      <button type="submit">Add ToDo</button>
+    </form>
+
+    <!-- Filter Controls -->
+    <div class="filters">
+      <input type="text" id="searchText" placeholder="Search...">
+      <select id="statusFilter">
+        <option value="all">All</option>
+        <option value="complete">Complete</option>
+        <option value="incomplete">Incomplete</option>
+      </select>
+      <select id="categoryFilter">
+        <option value="all">All Categories</option>
+        <option value="shopping">Shopping</option>
+        <option value="school">School</option>
+        <option value="work">Work</option>
+        <option value="house">House Work</option>
+      </select>
+    </div>
+
+    <!-- Sort Controls -->
+    <div class="sort">
+      <button id="sortDate">Sort by Due Date</button>
+      <button id="sortTitle">Sort by Title</button>
+    </div>
+
+    <!-- Todo List -->
+    <div id="todoList"></div>
+  </div>
+
+  <!-- Audio for Completion Reward (Bonus #1) -->
+  <audio id="completeSound" src="success.mp3"></audio>
+
+  <script src="index.js"></script>
+</body>
+
+</html>
